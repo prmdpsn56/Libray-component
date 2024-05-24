@@ -46,7 +46,10 @@
               "-d",
               "projects/example-component-library"
             ],
-            "port": 6006
+            "port": 6006,
+            "styles": [
+              "@angular/material/prebuilt-themes/indigo-pink.css"
+            ]
           }
         },
         "build-storybook": {
@@ -60,6 +63,9 @@
               "json",
               "-d",
               "projects/example-component-library"
+            ],
+            "styles": [
+              "@angular/material/prebuilt-themes/indigo-pink.css"
             ],
             "outputDir": "dist/storybook/example-component-library"
           }
@@ -88,6 +94,7 @@
               "projects/example-component-library-app/src/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/indigo-pink.css",
               "projects/example-component-library-app/src/styles.css"
             ],
             "scripts": []

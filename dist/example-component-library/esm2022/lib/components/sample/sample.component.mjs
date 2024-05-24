@@ -2,11 +2,11 @@ import { Component, Input } from '@angular/core';
 import * as i0 from "@angular/core";
 export class SampleComponent {
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.3.10", ngImport: i0, type: SampleComponent, deps: [], target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.3.10", type: SampleComponent, isStandalone: true, selector: "lib-sample", inputs: { name: "name" }, ngImport: i0, template: "<p>sample works!</p>\n{{name}}\n", styles: ["p{border:1px solid red;padding:10px}\n"] }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.3.10", type: SampleComponent, isStandalone: true, selector: "lib-sample", inputs: { name: "name" }, ngImport: i0, template: "<p>sample works!</p>\n{{name}}\n", styles: ["p{border:1px solid red;padding:10px}html,body{height:100%}body{margin:0;font-family:Roboto,Helvetica Neue,sans-serif}\n"] }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.3.10", ngImport: i0, type: SampleComponent, decorators: [{
             type: Component,
-            args: [{ selector: 'lib-sample', standalone: true, imports: [], template: "<p>sample works!</p>\n{{name}}\n", styles: ["p{border:1px solid red;padding:10px}\n"] }]
+            args: [{ selector: 'lib-sample', standalone: true, imports: [], template: "<p>sample works!</p>\n{{name}}\n", styles: ["p{border:1px solid red;padding:10px}html,body{height:100%}body{margin:0;font-family:Roboto,Helvetica Neue,sans-serif}\n"] }]
         }], propDecorators: { name: [{
                 type: Input
             }] } });
