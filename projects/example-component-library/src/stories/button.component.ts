@@ -1,10 +1,11 @@
+import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'storybook-button',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,MatButtonModule],
   template: ` <button
     type="button"
     (click)="onClickOutputEvent.emit($event)"
@@ -12,7 +13,8 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
     [ngStyle]="{ 'background-color': backgroundColor }"
   >
     {{ label }}
-  </button>`,
+  </button>
+  <button mat-button color="warn">Warn</button>`,
   styleUrls: ['./button.css'],
 })
 export class ButtonComponent {
