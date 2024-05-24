@@ -5,7 +5,8 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "buildproject": "ng build --project=example-component-library",
+    "build:storybook": "ng build --project=example-component-library",
+    "run:storybook": "ng run example-component-library:storybook",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
