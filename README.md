@@ -1,3 +1,13 @@
+# npm run run:storybook 
+To run the storybook applicatoin
+
+# npm run build:storybook
+To build the library component (Mandatory to make library function) 
+
+# npm start
+To run the project
+
+
 # ExampleComponentLibrary
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.0.
