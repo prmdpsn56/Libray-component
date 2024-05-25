@@ -2,18 +2,24 @@ import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
+export interface ButtonMessage {
+  message: string
+}
+
 @Component({
   selector: 'storybook-button',
   standalone: true,
   imports: [CommonModule,MatButtonModule],
   template: `
   <button  type="button"
-    (click)="onClickOutputEvent.emit($event)"
+    (click)="onClickOutputEvent.emit({message:'hello! this is a message from a button'})"
     [ngClass]="classes"
     [ngStyle]="{ 'background-color': backgroundColor }" mat-button color="primary">{{label}}</button>`,
   styleUrls: ['./button.css'],
 })
+
 export class ButtonComponent {
+  
   /**
    * Is this the principal call to action on the page?
    */
@@ -44,7 +50,7 @@ export class ButtonComponent {
    * Optional click handler
    */
   @Output()
-  onClickOutputEvent = new EventEmitter<Event>();
+  onClickOutputEvent = new EventEmitter<ButtonMessage>();
 
   public get classes(): string[] {
     const mode = this.primary ? 'storybook-button--primary' : 'storybook-button--secondary';

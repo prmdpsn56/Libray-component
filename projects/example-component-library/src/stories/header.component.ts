@@ -53,14 +53,14 @@ import type { User } from './user';
           <storybook-button
             *ngIf="!user"
             size="small"
-            [primary]="true"
+            [primary]="false"
             class="margin-left"
             (onClick)="onCreateAccount.emit($event)"
             label="Sign up"
           ></storybook-button>
         </div>
       </div>
-      <storybook-button [primary]="true" [backgroundColor]="'red'" [size]="'small'"/>
+      <storybook-button [label]="'click me and check console'" [primary]="true" [backgroundColor]="'green'" [size]="'small'" (onClickOutputEvent)=parentHandler($event)/>
     </div>
     
   </header>`,
@@ -78,4 +78,9 @@ export class HeaderComponent {
 
   @Output()
   onCreateAccount = new EventEmitter<Event>();
+
+  parentHandler(event: {message: string}){
+    console.log("event from header component");
+    console.log(event.message)
+  }
 }
