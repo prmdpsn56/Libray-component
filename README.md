@@ -8,6 +8,16 @@ To build the library component (Mandatory to make library function)
 To run the project
 
 
+Tutorials:
+https://github.com/profanis/codeShotsWithProfanis
+
+Video showing the connection between library and the actual project using the library:
+https://www.youtube.com/watch?v=hIEbJkP1M5E
+
+
+https://www.willtaylor.blog/complete-guide-to-angular-libraries/
+
+
 # ExampleComponentLibrary
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.0.
