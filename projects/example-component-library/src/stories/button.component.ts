@@ -14,7 +14,10 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   >
     {{ label }}
   </button>
-  <button mat-button color="warn">Warn</button>`,
+  <button mat-button color="primary">Primary</button>
+    <button mat-button color="accent">Accent</button>
+    <button mat-button color="warn">Warn</button>
+    <button mat-button disabled>Disabled</button>`,
   styleUrls: ['./button.css'],
 })
 export class ButtonComponent {
