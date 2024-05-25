@@ -58,7 +58,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<ButtonComponent>",
-                "defaultValue": "{\n  title: 'Example/anotherone/Button',\n  component: ButtonComponent,\n  tags: ['autodocs'],\n  argTypes: {\n    size: {\n      control:'select',\n      options: ['tiny', 'small', 'medium', 'large']\n    },\n    backgroundColor: {\n      control: 'color',\n    },\n  },\n  // Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args\n  // args: { onClickOutputEvent: fn() },\n}"
+                "defaultValue": "{\n  //this will define the path for a particular story; ex: like a menu.\n  title: 'Example/anotherone/Button',\n  // the current component that we need to render in the story book.\n  component: ButtonComponent,\n  // this will create a documentation page that will have the entier component, and its stories listed down below.\n  tags: ['autodocs'],\n  // this defines the list of standard arguments that will be  displayed on the stories documentation page.\n  argTypes: {\n    size: {\n      control:'select',\n      options: ['tiny', 'small', 'medium', 'large']\n    },\n    backgroundColor: {\n      control: 'color',\n    },\n  },\n  // Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args\n  // args: { onClickOutputEvent: fn() },\n}"
             },
             {
                 "name": "meta",
@@ -222,7 +222,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Meta<ButtonComponent>",
-                    "defaultValue": "{\n  title: 'Example/anotherone/Button',\n  component: ButtonComponent,\n  tags: ['autodocs'],\n  argTypes: {\n    size: {\n      control:'select',\n      options: ['tiny', 'small', 'medium', 'large']\n    },\n    backgroundColor: {\n      control: 'color',\n    },\n  },\n  // Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args\n  // args: { onClickOutputEvent: fn() },\n}"
+                    "defaultValue": "{\n  //this will define the path for a particular story; ex: like a menu.\n  title: 'Example/anotherone/Button',\n  // the current component that we need to render in the story book.\n  component: ButtonComponent,\n  // this will create a documentation page that will have the entier component, and its stories listed down below.\n  tags: ['autodocs'],\n  // this defines the list of standard arguments that will be  displayed on the stories documentation page.\n  argTypes: {\n    size: {\n      control:'select',\n      options: ['tiny', 'small', 'medium', 'large']\n    },\n    backgroundColor: {\n      control: 'color',\n    },\n  },\n  // Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args\n  // args: { onClickOutputEvent: fn() },\n}"
                 },
                 {
                     "name": "PrimaryStory",

@@ -60,7 +60,9 @@ import type { User } from './user';
           ></storybook-button>
         </div>
       </div>
+      <storybook-button [primary]="true" [backgroundColor]="'red'" [size]="'small'"/>
     </div>
+    
   </header>`,
   styleUrls: ['./header.css'],
 })

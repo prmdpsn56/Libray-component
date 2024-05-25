@@ -6,18 +6,11 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   selector: 'storybook-button',
   standalone: true,
   imports: [CommonModule,MatButtonModule],
-  template: ` <button
-    type="button"
+  template: `
+  <button  type="button"
     (click)="onClickOutputEvent.emit($event)"
     [ngClass]="classes"
-    [ngStyle]="{ 'background-color': backgroundColor }"
-  >
-    {{ label }}
-  </button>
-  <button mat-button color="primary">Primary</button>
-    <button mat-button color="accent">Accent</button>
-    <button mat-button color="warn">Warn</button>
-    <button mat-button disabled>Disabled</button>`,
+    [ngStyle]="{ 'background-color': backgroundColor }" mat-button color="primary">{{label}}</button>`,
   styleUrls: ['./button.css'],
 })
 export class ButtonComponent {
