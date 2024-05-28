@@ -1,3 +1,4 @@
+import { MatIconModule } from '@angular/material/icon';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -7,7 +8,7 @@ import type { User } from './user';
 @Component({
   selector: 'storybook-header',
   standalone: true,
-  imports: [CommonModule, ButtonComponent],
+  imports: [CommonModule, ButtonComponent,MatIconModule],
   template: `<header>
     <div class="storybook-header">
       <div>
@@ -60,6 +61,7 @@ import type { User } from './user';
           ></storybook-button>
         </div>
       </div>
+      <!-- <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon> -->
       <storybook-button [label]="'click me and check console'" [primary]="true" [backgroundColor]="'green'" [size]="'small'" (onClickOutputEvent)=parentHandler($event)/>
     </div>
     

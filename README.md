@@ -7,6 +7,26 @@ To build the library component (Mandatory to make library function)
 # npm start
 To run the project
 
+1. Create library project using the following guide: https://medium.com/@ashishmr272/the-beginners-guide-to-storybook-in-angular-16-testing-strategies-for-angular-libraries-495eb9df5b32
+2.  After Creating this you can also create a regular project inside the main project folder and then then use the created library there.
+
+
+
+Instruction for Material Icons.
+
+
+1. Register the Icons using a service, in this case example component library service.
+2. Host the SVG Icon under the root directory: follow these instructions:  https://stackoverflow.com/questions/57741052/include-assets-when-building-angular-library
+3. when using in the application project, Instantiate the library-icon service as they are being used registered during constructor method:
+constructor(private exampleComponentLibraryComponent:ExampleComponentLibraryService)
+
+4. when using in the same libary but other commponent you can use as is.
+5. you might also encounter an issue related to registering httpModule.
+use the following https://angular.dev/guide/http/setup and register the provideHttpClient(),
+
+6. Follow when encountering issues with story book implementation
+https://github.com/storybookjs/storybook/issues/21942
+
 
 Tutorials:
 https://github.com/profanis/codeShotsWithProfanis

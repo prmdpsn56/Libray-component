@@ -1,3 +1,5 @@
+import { ExampleComponentLibraryService } from './../lib/components/example/example-component-library.service';
+import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
@@ -9,16 +11,22 @@ export interface ButtonMessage {
 @Component({
   selector: 'storybook-button',
   standalone: true,
-  imports: [CommonModule,MatButtonModule],
+  imports: [CommonModule,MatButtonModule,MatIconModule],
   template: `
   <button  type="button"
     (click)="onClickOutputEvent.emit({message:'hello! this is a message from a button'})"
     [ngClass]="classes"
-    [ngStyle]="{ 'background-color': backgroundColor }" mat-button color="primary">{{label}}</button>`,
+    [ngStyle]="{ 'background-color': backgroundColor }" mat-button color="primary">{{label}}
+    <mat-icon svgIcon="phone"></mat-icon>
+    </button>`,
   styleUrls: ['./button.css'],
 })
 
 export class ButtonComponent {
+
+  constructor(private exampleComponentLibraryService:ExampleComponentLibraryService){
+
+  }
   
   /**
    * Is this the principal call to action on the page?

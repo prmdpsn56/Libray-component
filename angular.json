@@ -91,7 +91,12 @@
             "tsConfig": "projects/example-component-library-app/tsconfig.app.json",
             "assets": [
               "projects/example-component-library-app/src/favicon.ico",
-              "projects/example-component-library-app/src/assets"
+              "projects/example-component-library-app/src/assets",
+              {
+                "glob": "**/*",
+                "input": "dist/example-component-library/assets/svg/",
+                "output": "assets/svg/"
+              }
             ],
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",
@@ -151,7 +156,7 @@
             "tsConfig": "projects/example-component-library-app/tsconfig.spec.json",
             "assets": [
               "projects/example-component-library-app/src/favicon.ico",
-              "projects/example-component-library-app/src/assets"
+              "projects/example-component-library-app/src/assets/*s"
             ],
             "styles": [
               "projects/example-component-library-app/src/styles.css"

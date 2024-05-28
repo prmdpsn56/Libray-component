@@ -1,13 +1,16 @@
+import { ExampleComponentLibraryComponent } from './../lib/components/example/example-component-library.component';
+import { MatIconModule } from '@angular/material/icon';
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { HeaderComponent } from './header.component';
 import type { User } from './user';
+import { ExampleComponentLibraryService } from '../public-api';
 
 @Component({
   selector: 'storybook-page',
   standalone: true,
-  imports: [CommonModule, HeaderComponent],
+  imports: [CommonModule, HeaderComponent,MatIconModule],
   template: `<article>
     <storybook-header
       [user]="user"
@@ -17,6 +20,10 @@ import type { User } from './user';
     ></storybook-header>
     <section class="storybook-page">
       <h2>Pages in Storybook</h2>
+
+      <mat-icon svgIcon="phone"></mat-icon>
+
+      <mat-icon svgIcon="phone"></mat-icon>
       <p>
         We recommend building UIs with a
         <a href="https://componentdriven.org" target="_blank" rel="noopener noreferrer">
@@ -78,5 +85,9 @@ export class PageComponent {
 
   doCreateAccount() {
     this.user = { name: 'Jane Doe' };
+  }
+
+  constructor(private exampleComponentLibraryComponent:ExampleComponentLibraryService){
+
   }
 }
