@@ -1,7 +1,7 @@
 # npm run run:storybook 
 To run the storybook applicatoin
 
-# npm run build:storybook
+# npm run build:library
 To build the library component (Mandatory to make library function) 
 
 # npm start
@@ -26,6 +26,18 @@ use the following https://angular.dev/guide/http/setup and register the provideH
 
 6. Follow when encountering issues with story book implementation
 https://github.com/storybookjs/storybook/issues/21942
+
+
+
+## Instructiont to scss integration:
+
+1. In the library you can add the scss file anywhere but you will have to update the ng-packge.json file to include the scss path.
+
+2. To use this in story we have to update the angular json file under architect> build-storybook and architect > storybook
+
+3. to use this in to the project we have to import this in angular json. in this case under the 
+example-component-library-app > build > styles
+
 
 
 Tutorials:

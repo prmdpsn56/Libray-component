@@ -48,7 +48,8 @@
             ],
             "port": 6006,
             "styles": [
-              "@angular/material/prebuilt-themes/indigo-pink.css"
+              "@angular/material/prebuilt-themes/indigo-pink.css",
+              "./projects/example-component-library/styles.scss"
             ]
           }
         },
@@ -65,7 +66,8 @@
               "projects/example-component-library"
             ],
             "styles": [
-              "@angular/material/prebuilt-themes/indigo-pink.css"
+              "@angular/material/prebuilt-themes/indigo-pink.css",
+              "./projects/example-component-library/styles.scss"
             ],
             "outputDir": "dist/storybook/example-component-library"
           }
@@ -100,7 +102,8 @@
             ],
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",
-              "projects/example-component-library-app/src/styles.css"
+              "projects/example-component-library-app/src/styles.css",
+              "./dist/example-component-library/styles.scss"
             ],
             "scripts": []
           },
@@ -165,6 +168,11 @@
           }
         }
       }
+    }
+  },
+  "schematics": {
+    "@schematics/angular:component": {
+      "style": "scss"
     }
   },
   "cli": {
