@@ -4,6 +4,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { Component, Input } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 type Test2 = 'name' | 'age' | 'class';
 
@@ -17,7 +18,7 @@ type Type3 = Record<Test2,string>;
 @Component({
   selector: 'lib-sample',
   standalone: true,
-  imports: [MatButtonModule,MatCardModule,MatIconModule,],
+  imports: [MatButtonModule,MatCardModule,MatIconModule,RouterModule],
   templateUrl: './sample.component.html',
   styleUrl: './sample.component.scss'
 })

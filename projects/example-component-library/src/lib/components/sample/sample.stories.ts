@@ -1,10 +1,14 @@
-import {Meta, StoryObj} from '@storybook/angular';
+import {Meta, StoryObj, moduleMetadata} from '@storybook/angular';
 import {SampleComponent} from './sample.component';
 
 const meta: Meta<SampleComponent> = {
     title: 'sample/samplecomponent',
     component: SampleComponent,
     tags: ['autodocs'],
+    decorators:[
+      moduleMetadata({
+      })
+    ],
     parameters: {
       // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout
     //   layout: 'fullscreen',

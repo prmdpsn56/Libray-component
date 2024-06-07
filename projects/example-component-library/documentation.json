@@ -88,7 +88,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<SampleComponent>",
-                "defaultValue": "{\n    title: 'sample/samplecomponent',\n    component: SampleComponent,\n    tags: ['autodocs'],\n    parameters: {\n      // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout\n    //   layout: 'fullscreen',\n    },\n    argTypes: {\n        name:{\n            control: 'text'\n        }\n    }\n  }"
+                "defaultValue": "{\n    title: 'sample/samplecomponent',\n    component: SampleComponent,\n    tags: ['autodocs'],\n    decorators:[\n      moduleMetadata({\n      })\n    ],\n    parameters: {\n      // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout\n    //   layout: 'fullscreen',\n    },\n    argTypes: {\n        name:{\n            control: 'text'\n        }\n    }\n  }"
             },
             {
                 "name": "preview",
@@ -98,7 +98,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Preview",
-                "defaultValue": "{\n  decorators:[\n    applicationConfig({\n      providers: [importProvidersFrom(HttpClientModule)]\n    })\n  ],\n  parameters: {\n    controls: {\n      matchers: {\n        color: /(background|color)$/i,\n        date: /Date$/i,\n      },\n    },\n  },\n}"
+                "defaultValue": "{\n  decorators:[\n    applicationConfig({\n      providers: [importProvidersFrom(HttpClientModule),provideRouter([])],\n    }),\n    moduleMetadata({\n      imports:[]\n    })\n  ],\n  parameters: {\n    controls: {\n      matchers: {\n        color: /(background|color)$/i,\n        date: /Date$/i,\n      },\n    },\n  },\n}"
             },
             {
                 "name": "PrimaryStory",
@@ -285,7 +285,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Meta<SampleComponent>",
-                    "defaultValue": "{\n    title: 'sample/samplecomponent',\n    component: SampleComponent,\n    tags: ['autodocs'],\n    parameters: {\n      // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout\n    //   layout: 'fullscreen',\n    },\n    argTypes: {\n        name:{\n            control: 'text'\n        }\n    }\n  }"
+                    "defaultValue": "{\n    title: 'sample/samplecomponent',\n    component: SampleComponent,\n    tags: ['autodocs'],\n    decorators:[\n      moduleMetadata({\n      })\n    ],\n    parameters: {\n      // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout\n    //   layout: 'fullscreen',\n    },\n    argTypes: {\n        name:{\n            control: 'text'\n        }\n    }\n  }"
                 },
                 {
                     "name": "PrimaryStory",
@@ -307,7 +307,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Preview",
-                    "defaultValue": "{\n  decorators:[\n    applicationConfig({\n      providers: [importProvidersFrom(HttpClientModule)]\n    })\n  ],\n  parameters: {\n    controls: {\n      matchers: {\n        color: /(background|color)$/i,\n        date: /Date$/i,\n      },\n    },\n  },\n}"
+                    "defaultValue": "{\n  decorators:[\n    applicationConfig({\n      providers: [importProvidersFrom(HttpClientModule),provideRouter([])],\n    }),\n    moduleMetadata({\n      imports:[]\n    })\n  ],\n  parameters: {\n    controls: {\n      matchers: {\n        color: /(background|color)$/i,\n        date: /Date$/i,\n      },\n    },\n  },\n}"
                 }
             ]
         },
