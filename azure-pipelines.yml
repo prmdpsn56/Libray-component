@@ -2,20 +2,34 @@
 # Build a Node.js project that uses Angular.
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+
 trigger:
-- master
+ branches:
+   include:
+     - master
+     - develop
+
+variables:
+ vmImage: 'ubuntu-release'
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: ${vmImage}
 
-steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '20.x'
-  displayName: 'Install Node.js'
+stages:
+- stage: InstallAndBuildStage
+  jobs:
+    - job: Install
+      steps:
+      - task: NodeTool@0
+        inputs:
+          versionSpec: '20.x'
+        displayName: 'Install Node.js'
 
-- script: |
-    npm install -g @angular/cli
-    npm install
-    ng run build:library
-  displayName: 'npm install and build'
+    - job: Build
+      steps:
+      - script: |
+          npm install -g @angular/cli
+          npm install
+          ng run build:library
+          displayName: 'npm install and build'  
