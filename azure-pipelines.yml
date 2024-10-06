@@ -21,6 +21,7 @@ stages:
   jobs:
     - job: Install
       steps:
+      - script: echo installing node.js 
       - task: NodeTool@0
         inputs:
           versionSpec: '20.x'
