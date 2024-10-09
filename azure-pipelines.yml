@@ -3,50 +3,6 @@
 # # Add steps that analyze code, save build artifacts, deploy, and more:
 # # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
-
-# trigger:
-#  branches:
-#    include:
-#      - master
-#      - develop
-     
-# pool:
-#   vmImage: ubuntu-release
-
-# stages:
-# - stage: NodeInstall
-#   displayName: 'Node install'
-#   jobs:
-#     - job: Install
-#       steps:
-#       - script: echo installing node.js 
-#       - task: NodeTool@0
-#         inputs:
-#           versionSpec: '20.x'
-
-# - stage: NpmBuild
-#   displayName: 'NPM Install'
-#   dependsOn: NodeInstall
-#   jobs:
-#     - job: Build
-#       steps:
-#       - script: |
-#           npm install -g @angular/cli
-#           npm install
-#           ng run build:library
-#           displayName: 'npm install and build'
-
-# - stage: NpmPublish
-#   displayName: 'NPM Install'
-#   jobs:
-#     - job: Install
-#       steps: 
-#       - task: Npm@1
-#         inputs:
-#           command: 'publish'
-#           publishRegistry: 'useFeed'
-#           publishFeed: '4ab01b9f-7e82-421e-9ee3-b8e64e59767f'
-
 trigger:
  branches:
    include:
@@ -102,14 +58,3 @@ stages:
           publishRegistry: 'useFeed'
           publishFeed: '4ab01b9f-7e82-421e-9ee3-b8e64e59767f'
 
-# steps:
-# - task: NodeTool@0
-#   inputs:
-#     versionSpec: '20.x'
-#   displayName: 'Install Node.js'
-
-# - script: |
-#     npm install -g @angular/cli
-#     npm install
-#     ng run build:library
-#   displayName: 'npm install and build'
