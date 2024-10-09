@@ -23,7 +23,6 @@
 #       - task: NodeTool@0
 #         inputs:
 #           versionSpec: '20.x'
-#         displayName: 'Install Node.js'
 
 # - stage: NpmBuild
 #   displayName: 'NPM Install'
