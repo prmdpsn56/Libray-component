@@ -4,20 +4,14 @@
 # # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
 
-trigger:
- branches:
-   include:
-     - master
-     - develop
+# trigger:
+#  branches:
+#    include:
+#      - master
+#      - develop
      
-pool:
-  vmImage: ubuntu-release
-
-steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '20.x'
-  displayName: 'Install Node.js'
+# pool:
+#   vmImage: ubuntu-release
 
 # stages:
 # - stage: NodeInstall
@@ -54,11 +48,23 @@ steps:
 #           publishRegistry: 'useFeed'
 #           publishFeed: '4ab01b9f-7e82-421e-9ee3-b8e64e59767f'
 
-# trigger:
-# - master
+trigger:
+- master
 
-# pool:
-#   vmImage: ubuntu-latest
+pool:
+  vmImage: ubuntu-latest
+
+stages:
+- stage: NodeInstall
+  displayName: 'Node install'
+  jobs:
+    - job: Install
+      steps:
+      - script: echo installing node.js 
+      - task: NodeTool@0
+        inputs:
+          versionSpec: '20.x'
+        displayName: 'Install Node.js'
 
 # steps:
 # - task: NodeTool@0
