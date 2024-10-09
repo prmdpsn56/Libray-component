@@ -87,9 +87,9 @@ stages:
       steps:
       - task: CopyFiles@2
         inputs:
-          SourceFolder: '$(Build.SourcesDirectory)/dist/example-component-library'
+          SourceFolder: '$(Build.SourcesDirectory)/dist/'
           Contents: '**'
-          TargetFolder: '$(build.artifactstagingdirectory)'
+          TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
 - stage: NpmPublish
   displayName: 'NPM Install'
