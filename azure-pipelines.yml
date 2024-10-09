@@ -87,7 +87,7 @@ stages:
       steps:
       - task: CopyFiles@2
         inputs:
-          SourceFolder: '/dist/example-component-library'
+          SourceFolder: '$(Build.SourcesDirectory)/dist/example-component-library'
           Contents: '**'
           TargetFolder: '$(build.artifactstagingdirectory)'
 
