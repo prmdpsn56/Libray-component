@@ -77,7 +77,19 @@ stages:
       - script: |
           npm install -g @angular/cli
           npm install
+
           npm run build:storybook
+
+- stage: CopyFiles
+  displayName: 'Copy file using task'
+  jobs:
+    - job: CopyFiles
+      steps:
+      - task: CopyFiles@2
+        inputs:
+          SourceFolder: '/dist'
+          Contents: '**'
+          TargetFolder: '$(build.artifactstagingdirectory)'
 
 - stage: NpmPublish
   displayName: 'NPM Install'
