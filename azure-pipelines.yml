@@ -75,7 +75,6 @@ stages:
           npm install -g @angular/cli
           npm install
           npm run build:storybook
-          displayName: 'npm install and build'
 
 - stage: NpmPublish
   displayName: 'NPM Install'
