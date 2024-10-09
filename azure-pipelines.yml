@@ -11,7 +11,7 @@ trigger:
      - develop
      
 pool:
-  vmImage: 'ubuntu-release'
+  vmImage: ubuntu-release
 
 steps:
 - task: NodeTool@0
