@@ -48,7 +48,10 @@
 #           publishFeed: '4ab01b9f-7e82-421e-9ee3-b8e64e59767f'
 
 trigger:
-- master
+ branches:
+   include:
+     - master
+     - develop
 
 pool:
   vmImage: ubuntu-latest
