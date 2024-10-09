@@ -33,7 +33,6 @@ stages:
       - script: |
           npm install -g @angular/cli
           npm install
-
           npm run build:storybook
 
 - stage: CopyFiles
@@ -50,11 +49,19 @@ stages:
 - stage: NpmPublish
   displayName: 'NPM Install'
   jobs:
-    - job: Install
+    - job: authenticate
+      steps:
+      - task: npmAuthenticate@0
+        inputs:
+          workingFile: '$(Build.SourcesDirectory)/.npmrc'  # Automatically handles authentication for Azure Artifacts
+        displayName: 'Authenticate with Azure Artifacts'
+
+    - job: publish
       steps: 
       - task: Npm@1
         inputs:
           command: 'publish'
+          workingDir: '$(Build.SourcesDirectory)/dist/'
           publishRegistry: 'useFeed'
           publishFeed: '4ab01b9f-7e82-421e-9ee3-b8e64e59767f'
 
