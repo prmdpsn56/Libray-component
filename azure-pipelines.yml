@@ -44,7 +44,7 @@ stages:
         inputs:
           SourceFolder: '$(Build.SourcesDirectory)/dist/'
           Contents: '**'
-          TargetFolder: '$(Build.ArtifactStagingDirectory)'         
+          TargetFolder: '$(Build.ArtifactStagingDirectory)/example-component-library'         
 
 - stage: copynpmrc
   displayName: 'Copy npmrc file'
@@ -57,7 +57,7 @@ stages:
           Contents: '.npmrc'
           TargetFolder: '$(Build.ArtifactStagingDirectory)/example-component-library'
       - script: ls
-          
+    
 
 - stage: NpmPublish
   displayName: 'NPM Install'
