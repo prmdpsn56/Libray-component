@@ -44,11 +44,20 @@ stages:
         inputs:
           SourceFolder: '$(Build.SourcesDirectory)/dist/'
           Contents: '**'
-          TargetFolder: '$(Build.ArtifactStagingDirectory)'
+          TargetFolder: '$(Build.ArtifactStagingDirectory)'         
+
+- stage: CopyFiles
+  displayName: 'Copy npmrc file'
+  jobs:
+    - job: CopyFiles
+      steps:
+      - task: CopyFiles@2
+        inputs:
+          SourceFolder: '$(Build.SourcesDirectory)'
+          Contents: '.npmrc'
+          TargetFolder: '$(Build.ArtifactStagingDirectory)/example-component-library'
       - script: |
-          xcopy .\\.npmrc "dist\\example-component-library\\"
-          mkdir $(Build.ArtifactStagingDirectory)\\dist
-        displayName: Copy dist contents            
+        ls      
           
 
 - stage: NpmPublish
