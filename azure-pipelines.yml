@@ -56,8 +56,7 @@ stages:
           SourceFolder: '$(Build.SourcesDirectory)'
           Contents: '.npmrc'
           TargetFolder: '$(Build.ArtifactStagingDirectory)/example-component-library'
-      - script: |
-        ls      
+      - script: ls
           
 
 - stage: NpmPublish
