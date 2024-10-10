@@ -45,6 +45,11 @@ stages:
           SourceFolder: '$(Build.SourcesDirectory)/dist/'
           Contents: '**'
           TargetFolder: '$(Build.ArtifactStagingDirectory)'
+      - script: |
+          xcopy .\\.npmrc "dist\\example-component-library\\"
+          mkdir $(Build.ArtifactStagingDirectory)\\dist
+        displayName: Copy dist contents            
+          
 
 - stage: NpmPublish
   displayName: 'NPM Install'
@@ -54,12 +59,7 @@ stages:
       - task: npmAuthenticate@0
         inputs:
           workingFile: '$(Build.SourcesDirectory)/.npmrc'  # Automatically handles authentication for Azure Artifacts
-        displayName: 'Authenticate with Azure Artifacts'
-
-      - script: |
-          xcopy .\\.npmrc "dist\\example-component-library\\"
-          mkdir $(Build.ArtifactStagingDirectory)\\dist
-        displayName: Copy dist contents      
+        displayName: 'Authenticate with Azure Artifacts'    
 
     - job: publish
       steps: 
