@@ -45,17 +45,6 @@ stages:
           SourceFolder: '$(Build.SourcesDirectory)/dist/'
           Contents: '**'
           TargetFolder: '$(Build.ArtifactStagingDirectory)'
-      - task: PublishBuildArtifacts@1
-        inputs:
-          PathtoPublish: '$(Build.ArtifactStagingDirectory)/example-component-library'
-          ArtifactName: 'drop1'
-          publishLocation: 'Container'      
-
-- stage: copynpmrc
-  displayName: 'Copy npmrc file'
-  jobs:
-    - job: CopyFiles
-      steps:
       - task: CopyFiles@2
         inputs:
           SourceFolder: '$(Build.SourcesDirectory)'
@@ -65,26 +54,49 @@ stages:
         inputs:
           PathtoPublish: '$(Build.ArtifactStagingDirectory)/example-component-library'
           ArtifactName: 'drop'
-          publishLocation: 'Container'
-          
+          publishLocation: 'Container'      
 
-- stage: NpmPublish
-  displayName: 'NPM Install'
+- stage: Publish
+  displayName: publishnpm
   jobs:
-    - job: authenticate
-      steps:
-      - task: npmAuthenticate@0
-        inputs:
-          workingFile: '$(Build.SourcesDirectory)/.npmrc'  # Automatically handles authentication for Azure Artifacts
-        displayName: 'Authenticate with Azure Artifacts'    
+      - job:
+        displayName: "Publish npm package"
+        workspace:
+          clean: all
+        steps:
+          - task: DownloadPipelineArtifact@2
+            inputs:
+              source: "current"
+              artifact: "drop"
+              path: '$(Pipeline.Workspace)/drop'
+          - task: npmAuthenticate@0
+            inputs:
+              workingFile: ".npmrc"
+          - task: Npm@1
+            inputs:
+              command: 'publish'
+              workingDir: '$(Build.SourcesDirectory)/dist/example-component-library'
+              publishRegistry: 'useFeed'
+              publishFeed: '4ab01b9f-7e82-421e-9ee3-b8e64e59767f'
 
-    - job: publish
-      steps: 
-      - task: Npm@1
-        inputs:
-          command: 'publish'
-          workingDir: '$(Build.SourcesDirectory)/dist/example-component-library'
-          publishRegistry: 'useFeed'
-          publishFeed: '4ab01b9f-7e82-421e-9ee3-b8e64e59767f'
+
+# - stage: NpmPublish
+#   displayName: 'NPM Install'
+#   jobs:
+#     - job: authenticate
+#       steps:
+#       - task: npmAuthenticate@0
+#         inputs:
+#           workingFile: '$(Build.ArtifactStagingDirectory)/example-component-library.npmrc'  # Automatically handles authentication for Azure Artifacts
+#         displayName: 'Authenticate with Azure Artifacts'   
+
+#     - job: publish
+#       steps: 
+#       - task: Npm@1
+#         inputs:
+#           command: 'publish'
+#           workingDir: '$(Build.SourcesDirectory)/dist/example-component-library'
+#           publishRegistry: 'useFeed'
+#           publishFeed: '4ab01b9f-7e82-421e-9ee3-b8e64e59767f'
           
 
