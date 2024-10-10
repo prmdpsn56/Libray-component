@@ -46,7 +46,7 @@ stages:
           Contents: '**'
           TargetFolder: '$(Build.ArtifactStagingDirectory)'         
 
-- stage: copy npmrc
+- stage: copynpmrc
   displayName: 'Copy npmrc file'
   jobs:
     - job: CopyFiles
