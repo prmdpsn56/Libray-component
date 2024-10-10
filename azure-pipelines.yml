@@ -57,6 +57,12 @@ stages:
           Contents: '.npmrc'
           TargetFolder: '$(Build.ArtifactStagingDirectory)/example-component-library'
       - script: ls
+
+- stage: publish
+  displayName: 'Copy publish file'
+  jobs:
+    - job: publish
+      steps:      
       - task: PublishBuildArtifacts@1
         inputs:
           PathtoPublish: '$(Build.ArtifactStagingDirectory)/example-component-library'
