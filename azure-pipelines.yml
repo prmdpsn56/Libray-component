@@ -56,6 +56,12 @@ stages:
           workingFile: '$(Build.SourcesDirectory)/.npmrc'  # Automatically handles authentication for Azure Artifacts
         displayName: 'Authenticate with Azure Artifacts'
 
+      - script: |
+          xcopy .\\.npmrc "dist\\example-component-library\\"
+          mkdir $(Build.ArtifactStagingDirectory)\\dist
+          xcopy "dist\\corelib" $(Build.ArtifactStagingDirectory)\\dist /E/H/C
+        displayName: Copy dist contents      
+
     - job: publish
       steps: 
       - task: Npm@1
