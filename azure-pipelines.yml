@@ -59,7 +59,6 @@ stages:
       - script: |
           xcopy .\\.npmrc "dist\\example-component-library\\"
           mkdir $(Build.ArtifactStagingDirectory)\\dist
-          xcopy "dist\\corelib" $(Build.ArtifactStagingDirectory)\\dist /E/H/C
         displayName: Copy dist contents      
 
     - job: publish
