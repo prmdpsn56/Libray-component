@@ -47,9 +47,9 @@ stages:
           TargetFolder: '$(Build.ArtifactStagingDirectory)'
       - task: CopyFiles@2
         inputs:
-          SourceFolder: '$(Build.SourcesDirectory)'
+          SourceFolder: '$(Build.SourcesDirectory)/dist/'
           Contents: '.npmrc'
-          TargetFolder: '$(Build.ArtifactStagingDirectory)/example-component-library'
+          TargetFolder: '$(Build.ArtifactStagingDirectory)'
       - task: PublishBuildArtifacts@1
         inputs:
           PathtoPublish: '$(Build.ArtifactStagingDirectory)/example-component-library'
