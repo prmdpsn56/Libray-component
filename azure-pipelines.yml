@@ -3,100 +3,156 @@
 # # Add steps that analyze code, save build artifacts, deploy, and more:
 # # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
-trigger:
- branches:
-   include:
-     - master
-     - develop
+# trigger:
+#  branches:
+#    include:
+#      - master
+#      - develop
 
-pool:
-  vmImage: ubuntu-latest
+# pool:
+#   vmImage: ubuntu-latest
+
+# stages:
+# - stage: NodeInstall
+#   displayName: 'Node install'
+#   jobs:
+#     - job: Install
+#       steps:
+#       - script: echo installing node.js 
+#       - task: NodeTool@0
+#         inputs:
+#           versionSpec: '20.x'
+#         displayName: 'Install Node.js'
+
+# - stage: NpmBuild
+#   displayName: 'NPM Install'
+#   dependsOn: NodeInstall
+#   jobs:
+#     - job: Build
+#       steps:
+#       - script: |
+#           npm install -g @angular/cli
+#           npm install
+#           npm run build:storybook
+
+# - stage: CopyFiles
+#   displayName: 'Copy file using task'
+#   jobs:
+#     - job: CopyFiles
+#       steps:
+#       - task: CopyFiles@2
+#         inputs:
+#           SourceFolder: '$(Build.SourcesDirectory)/dist/'
+#           Contents: '**'
+#           TargetFolder: '$(Build.ArtifactStagingDirectory)'
+#       - task: CopyFiles@2
+#         inputs:
+#           SourceFolder: '$(Build.SourcesDirectory)'
+#           Contents: '.npmrc'
+#           TargetFolder: '$(Build.ArtifactStagingDirectory)/example-component-library'
+#       - task: PublishBuildArtifacts@1
+#         inputs:
+#           PathtoPublish: '$(Build.ArtifactStagingDirectory)/example-component-library'
+#           ArtifactName: 'drop'
+#           publishLocation: 'Container'      
+
+# - stage: Publish
+#   displayName: publishnpm
+#   jobs:
+#       - job:
+#         displayName: "Publish npm package"
+#         workspace:
+#           clean: all
+#         steps:
+#           - task: DownloadPipelineArtifact@2
+#             inputs:
+#               source: "current"
+#               artifact: "drop"
+#               path: '$(Pipeline.Workspace)/drop'
+#           - task: npmAuthenticate@0
+#             inputs:
+#               workingFile: ".npmrc"
+#           - task: Npm@1
+#             inputs:
+#               command: 'publish'
+#               workingDir: '$(Pipeline.Workspace)/drop'
+#               publishRegistry: 'useFeed'
+#               publishFeed: '4ab01b9f-7e82-421e-9ee3-b8e64e59767f'
+
+
+
+
+# //copy from youtube video source
+trigger:
+  - master
 
 stages:
-- stage: NodeInstall
-  displayName: 'Node install'
-  jobs:
-    - job: Install
-      steps:
-      - script: echo installing node.js 
-      - task: NodeTool@0
-        inputs:
-          versionSpec: '20.x'
-        displayName: 'Install Node.js'
-
-- stage: NpmBuild
-  displayName: 'NPM Install'
-  dependsOn: NodeInstall
-  jobs:
-    - job: Build
-      steps:
-      - script: |
-          npm install -g @angular/cli
-          npm install
-          npm run build:storybook
-
-- stage: CopyFiles
-  displayName: 'Copy file using task'
-  jobs:
-    - job: CopyFiles
-      steps:
-      - task: CopyFiles@2
-        inputs:
-          SourceFolder: '$(Build.SourcesDirectory)/dist/'
-          Contents: '**'
-          TargetFolder: '$(Build.ArtifactStagingDirectory)'
-      - task: CopyFiles@2
-        inputs:
-          SourceFolder: '$(Build.SourcesDirectory)'
-          Contents: '.npmrc'
-          TargetFolder: '$(Build.ArtifactStagingDirectory)/example-component-library'
-      - task: PublishBuildArtifacts@1
-        inputs:
-          PathtoPublish: '$(Build.ArtifactStagingDirectory)/example-component-library'
-          ArtifactName: 'drop'
-          publishLocation: 'Container'      
-
-- stage: Publish
-  displayName: publishnpm
-  jobs:
-      - job:
-        displayName: "Publish npm package"
+  - stage: Build
+    pool:
+      vmImage: "windows-latest"
+    variables:
+      version: $(nextRelease)
+    jobs:
+      - job: Build
+        displayName: "Angular Library Build"
         workspace:
           clean: all
         steps:
-          - task: DownloadPipelineArtifact@2
+          - task: NodeTool@0
             inputs:
-              source: "current"
-              artifact: "drop"
-              path: '$(Pipeline.Workspace)/drop'
-          - task: npmAuthenticate@0
-            inputs:
-              workingFile: ".npmrc"
+              versionSpec: "20.x"
+            displayName: "Install Node.js"
+
           - task: Npm@1
             inputs:
-              command: 'publish'
-              workingDir: '$(Pipeline.Workspace)/drop'
-              publishRegistry: 'useFeed'
-              publishFeed: '4ab01b9f-7e82-421e-9ee3-b8e64e59767f'
+              command: "install"
+            displayName: "Npm Install"
 
+          - task: Npm@1
+            inputs:
+              command: custom
+              customCommand: "run build:storybook"
+            displayName: "Build Angular lib"
 
-# - stage: NpmPublish
-#   displayName: 'NPM Install'
-#   jobs:
-#     - job: authenticate
-#       steps:
-#       - task: npmAuthenticate@0
-#         inputs:
-#           workingFile: '$(Build.ArtifactStagingDirectory)/example-component-library.npmrc'  # Automatically handles authentication for Azure Artifacts
-#         displayName: 'Authenticate with Azure Artifacts'   
+          - script: |
+              xcopy .\\.npmrc "dist\\example-component-library\\"
+              mkdir $(Build.ArtifactStagingDirectory)\\dist
+              xcopy "dist\\example-component-library" $(Build.ArtifactStagingDirectory)\\dist /E/H/C
+            displayName: Copy dist contents
 
-#     - job: publish
-#       steps: 
-#       - task: Npm@1
-#         inputs:
-#           command: 'publish'
-#           workingDir: '$(Build.SourcesDirectory)/dist/example-component-library'
-#           publishRegistry: 'useFeed'
-#           publishFeed: '4ab01b9f-7e82-421e-9ee3-b8e64e59767f'
+          - task: PublishPipelineArtifact@1
+            inputs:
+              targetPath: $(Build.ArtifactStagingDirectory)\\dist
+              artifactName: "drop"
+              artifactType: "pipeline"
+            displayName: "Publish Artifact"
+
+  # - stage: Publish
+  #   dependsOn: Build
+  #   condition: succeeded('Build')
+  #   pool:
+  #     vmImage: "windows-latest"
+  #   jobs:
+  #     - job:
+  #       displayName: "Publish npm package"
+  #       workspace:
+  #         clean: all
+  #       steps:
+  #         - task: DownloadPipelineArtifact@2
+  #           inputs:
+  #             source: "current"
+  #             artifact: "drop"
+  #             path: '$(Pipeline.Workspace)\\drop'
+  #         - task: npmAuthenticate@0
+  #           inputs:
+  #             workingFile: ".\\.npmrc"
+  #         - task: Npm@1
+  #           inputs:
+  #             command: "publish"
+  #             workingDir: "$(Agent.BuildDirectory)\\drop"
+  #             publishRegistry: useFeed
+  #             publishFeed: anuroopjoy/npm_packages
+  #           displayName: "Publish npm package"
+
           
 
