@@ -62,7 +62,7 @@ stages:
       steps:
       - task: npmAuthenticate@0
         inputs:
-          workingFile: '$(Build.SourcesDirectory)/.npmrc'  # Automatically handles authentication for Azure Artifacts
+          workingFile: '$(Pipeline.Workspace)/.npmrc'  # Automatically handles authentication for Azure Artifacts
         displayName: 'Authenticate with Azure Artifacts'    
 
     - job: publish
@@ -70,7 +70,7 @@ stages:
       - task: Npm@1
         inputs:
           command: 'publish'
-          workingDir: '$(Build.SourcesDirectory)/dist/example-component-library'
+          workingDir: '$(Pipeline.Workspace)/drop'
           publishRegistry: 'useFeed'
           publishFeed: '4ab01b9f-7e82-421e-9ee3-b8e64e59767f'
           
