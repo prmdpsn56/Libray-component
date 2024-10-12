@@ -44,9 +44,9 @@ stages:
 
       - task: CopyFiles@2
         inputs:
-          SourceFolder: '$(Build.SourcesDirectory)/dist/'
+          SourceFolder: '$(Build.SourcesDirectory)/'
           Contents: '.npmrc'
-          TargetFolder: '$(Build.ArtifactStagingDirectory)'
+          TargetFolder: '$(Build.ArtifactStagingDirectory)/example-component-library'
 
       - task: PublishBuildArtifacts@1
         inputs:
@@ -72,6 +72,6 @@ stages:
           command: 'publish'
           workingDir: '$(Pipeline.Workspace)/drop'
           publishRegistry: 'useFeed'
-          publishFeed: '4ab01b9f-7e82-421e-9ee3-b8e64e59767f'
+          publishFeed: 'd2ab0d77-cb6e-4f93-9132-b62e65eccd45/e4c0301c-90c2-4515-b46e-f74781cac68e'
           
 
