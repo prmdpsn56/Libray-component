@@ -149,7 +149,7 @@ stages:
           - task: Npm@1
             inputs:
               command: "publish"
-              workingDir: "$(Agent.BuildDirectory)\\drop"
+              workingDir: '$(Pipeline.Workspace)/drop'
               publishRegistry: 'useFeed'
               publishFeed: 'd2ab0d77-cb6e-4f93-9132-b62e65eccd45/e4c0301c-90c2-4515-b46e-f74781cac68e'
 
