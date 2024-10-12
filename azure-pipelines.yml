@@ -67,7 +67,7 @@ stages:
             path: '$(Agent.BuildDirectory)/downloaded-here'
         - task: npmAuthenticate@0
           inputs:
-            workingFile: "$(Agent.BuildDirectory)/.npmrc"
+            workingFile: "$(Agent.BuildDirectory)/downloaded-here/.npmrc"
         - task: Npm@1
           inputs:
             command: "publish"
