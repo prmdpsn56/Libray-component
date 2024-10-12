@@ -48,23 +48,11 @@ stages:
           Contents: '.npmrc'
           TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
-
-
-- stage : ArtifactPublish
-  jobs:
-    - job: publishsingArtifact
-      steps:
       - task: PublishBuildArtifacts@1
         inputs:
           PathtoPublish: '$(Build.ArtifactStagingDirectory)/example-component-library'
           ArtifactName: 'drop'
-          publishLocation: 'Container'
-
-    #  - task: PublishBuildArtifacts@1
-    #     inputs:
-    #       PathtoPublish: '$(Build.ArtifactStagingDirectory)/example-component-library'
-    #       ArtifactName: 'drop'
-    #       publishLocation: 'Container'        
+          publishLocation: 'Container'       
         
 
 - stage: NpmPublish
