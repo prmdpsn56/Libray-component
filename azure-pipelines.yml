@@ -29,35 +29,29 @@ stages:
   displayName: 'NPM Install'
   dependsOn: NodeInstall
   jobs:
-    - job: Build
+    - job: Build and Copy
       steps:
       - script: |
           npm install -g @angular/cli
           npm install
           npm run build:storybook
+      
+      - task: CopyFiles
+        steps:
+        - task: CopyFiles@2
+          inputs:
+            SourceFolder: '$(Build.SourcesDirectory)/dist/'
+            Contents: '**'
+            TargetFolder: '$(Build.ArtifactStagingDirectory)/example-component-library'         
 
-- stage: CopyFiles
-  displayName: 'Copy file using task'
-  jobs:
-    - job: CopyFiles
-      steps:
-      - task: CopyFiles@2
-        inputs:
-          SourceFolder: '$(Build.SourcesDirectory)/dist/'
-          Contents: '**'
-          TargetFolder: '$(Build.ArtifactStagingDirectory)/example-component-library'         
-
-- stage: copynpmrc
-  displayName: 'Copy npmrc file'
-  jobs:
-    - job: CopyFiles
-      steps:
-      - task: CopyFiles@2
-        inputs:
-          SourceFolder: '$(Build.SourcesDirectory)'
-          Contents: '.npmrc'
-          TargetFolder: '$(Build.ArtifactStagingDirectory)/example-component-library'
-      - script: ls
+      - task: CopyFiles
+        steps:
+        - task: CopyFiles@2
+          inputs:
+            SourceFolder: '$(Build.SourcesDirectory)'
+            Contents: '.npmrc'
+            TargetFolder: '$(Build.ArtifactStagingDirectory)/example-component-library'
+        - script: ls
     
 
 - stage: NpmPublish
