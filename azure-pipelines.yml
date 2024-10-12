@@ -58,15 +58,20 @@ stages:
 - stage: NpmPublish
   displayName: 'NPM Install'
   jobs:
-    - job: authenticate
+    - job: Build_and_Copy
       steps:
+      - task: DownloadPipelineArtifact@2
+        inputs:
+          buildType: 'current'
+          artifactName: 'drop'
+          itemPattern: 
+          targetPath: '$(Pipeline.Workspace)'
+
       - task: npmAuthenticate@0
         inputs:
-          workingFile: '$(Pipeline.Workspace)/.npmrc'  # Automatically handles authentication for Azure Artifacts
+            workingFile: '$(Pipeline.Workspace)/drop/.npmrc'  # Automatically handles authentication for Azure Artifacts
         displayName: 'Authenticate with Azure Artifacts'    
-
-    - job: publish
-      steps: 
+    
       - task: Npm@1
         inputs:
           command: 'publish'
