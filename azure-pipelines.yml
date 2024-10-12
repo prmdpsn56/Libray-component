@@ -151,7 +151,7 @@ stages:
               command: "publish"
               workingDir: "$(Agent.BuildDirectory)\\drop"
               publishRegistry: useFeed
-              publishFeed: paramdeepsingh/_packaging
+              publishFeed: paramdeepsingh/dev
             displayName: "Publish npm package"
 
           
