@@ -36,13 +36,13 @@ stages:
           npm install
           npm run build:storybook
 
-      - task: CopyFiles@2
+      - task: dist
         inputs:
           SourceFolder: '$(Build.SourcesDirectory)/dist/'
           Contents: '**'
           TargetFolder: '$(Build.ArtifactStagingDirectory)/example-component-library'         
 
-      - task: CopyFiles@2
+      - task: copy_npmrc_file
         inputs:
           SourceFolder: '$(Build.SourcesDirectory)'
           Contents: '.npmrc'
