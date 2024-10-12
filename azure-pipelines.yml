@@ -35,24 +35,19 @@ stages:
           npm install -g @angular/cli
           npm install
           npm run build:storybook
-      
-      - task: CopyFiles
-        steps:
-        - task: CopyFiles@2
-          inputs:
-            SourceFolder: '$(Build.SourcesDirectory)/dist/'
-            Contents: '**'
-            TargetFolder: '$(Build.ArtifactStagingDirectory)/example-component-library'         
 
-      - task: CopyFiles
-        steps:
-        - task: CopyFiles@2
-          inputs:
-            SourceFolder: '$(Build.SourcesDirectory)'
-            Contents: '.npmrc'
-            TargetFolder: '$(Build.ArtifactStagingDirectory)/example-component-library'
-        - script: ls
-    
+      - task: CopyFiles@2
+        inputs:
+          SourceFolder: '$(Build.SourcesDirectory)/dist/'
+          Contents: '**'
+          TargetFolder: '$(Build.ArtifactStagingDirectory)/example-component-library'         
+
+      - task: CopyFiles@2
+        inputs:
+          SourceFolder: '$(Build.SourcesDirectory)'
+          Contents: '.npmrc'
+          TargetFolder: '$(Build.ArtifactStagingDirectory)/example-component-library'
+        
 
 - stage: NpmPublish
   displayName: 'NPM Install'
