@@ -127,32 +127,32 @@ stages:
               artifactType: "pipeline"
             displayName: "Publish Artifact"
 
-  # - stage: Publish
-  #   dependsOn: Build
-  #   condition: succeeded('Build')
-  #   pool:
-  #     vmImage: "windows-latest"
-  #   jobs:
-  #     - job:
-  #       displayName: "Publish npm package"
-  #       workspace:
-  #         clean: all
-  #       steps:
-  #         - task: DownloadPipelineArtifact@2
-  #           inputs:
-  #             source: "current"
-  #             artifact: "drop"
-  #             path: '$(Pipeline.Workspace)\\drop'
-  #         - task: npmAuthenticate@0
-  #           inputs:
-  #             workingFile: ".\\.npmrc"
-  #         - task: Npm@1
-  #           inputs:
-  #             command: "publish"
-  #             workingDir: "$(Agent.BuildDirectory)\\drop"
-  #             publishRegistry: useFeed
-  #             publishFeed: anuroopjoy/npm_packages
-  #           displayName: "Publish npm package"
+  - stage: Publish
+    dependsOn: Build
+    condition: succeeded('Build')
+    pool:
+      vmImage: "windows-latest"
+    jobs:
+      - job:
+        displayName: "Publish npm package"
+        workspace:
+          clean: all
+        steps:
+          - task: DownloadPipelineArtifact@2
+            inputs:
+              source: "current"
+              artifact: "drop"
+              path: '$(Pipeline.Workspace)\\drop'
+          - task: npmAuthenticate@0
+            inputs:
+              workingFile: ".\\.npmrc"
+          - task: Npm@1
+            inputs:
+              command: "publish"
+              workingDir: "$(Agent.BuildDirectory)\\drop"
+              publishRegistry: useFeed
+              publishFeed: paramdeepsingh/_packaging
+            displayName: "Publish npm package"
 
           
 
