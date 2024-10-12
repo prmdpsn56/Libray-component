@@ -29,7 +29,7 @@ stages:
   displayName: 'NPM Install'
   dependsOn: NodeInstall
   jobs:
-    - job: Build and Copy
+    - job: Build_and_Copy
       steps:
       - script: |
           npm install -g @angular/cli
@@ -41,11 +41,13 @@ stages:
           SourceFolder: '$(Build.SourcesDirectory)/dist/'
           Contents: '**'
           TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
       - task: CopyFiles@2
         inputs:
           SourceFolder: '$(Build.SourcesDirectory)/dist/'
           Contents: '.npmrc'
           TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
       - task: PublishBuildArtifacts@1
         inputs:
           PathtoPublish: '$(Build.ArtifactStagingDirectory)/example-component-library'
